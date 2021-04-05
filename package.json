@@ -6,8 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "precommit": "echo \"[Salsa.FrontEnd] pre-commit\"",
-    "prepush": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify --verbose"
+  },
+  "husky": {
+    "hooks": {
+      "prepush": "npm version patch --no-git-tag-version && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify"
+    }
   },
   "dependencies": {
     "next": "10.1.3",
