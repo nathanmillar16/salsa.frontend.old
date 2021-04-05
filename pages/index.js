@@ -1,11 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
-import events from "../events.json";
-import { fromImageToUrl } from "../utils/urls";
+import { fromImageToUrl, API_URL } from "../utils/urls";
 import { priceFormatter } from "../utils/format";
 
-export default function Home() {
+export default function Home({ events }) {
   return (
     <div>
       <Head>
@@ -64,4 +63,15 @@ export default function Home() {
       ))}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const events_res = await fetch(`${API_URL}/events/`);
+  const events = await events_res.json();
+
+  return {
+    props: {
+      events,
+    },
+  };
 }

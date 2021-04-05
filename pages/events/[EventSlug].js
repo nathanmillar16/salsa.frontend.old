@@ -1,10 +1,8 @@
 import Head from "next/head";
-import events from "../../events.json";
-import { fromImageToUrl } from "../../utils/urls";
+import { API_URL, fromImageToUrl } from "../../utils/urls";
 import { priceFormatter } from "../../utils/format";
-const event = events[0];
 
-const Event = () => {
+const Event = ({ event }) => {
   return (
     <div>
       <Head>
@@ -22,5 +20,30 @@ const Event = () => {
     </div>
   );
 };
+
+export async function getStaticProps({ params: { EventSlug } }) {
+  const event_res = await fetch(`${API_URL}/events/?EventSlug=${EventSlug}`);
+  //localhost:1337/events/?EventSlug=dance-event-2
+  const found_event = await event_res.json();
+
+  return {
+    props: {
+      event: found_event[0],
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const events_res = await fetch(`${API_URL}/events/`);
+  const events = await events_res.json();
+
+  return {
+    paths: events.map((event) => ({
+      params: { EventSlug: String(event.EventSlug) },
+    })),
+    //show 404 if page not matched
+    fallback: false,
+  };
+}
 
 export default Event;
