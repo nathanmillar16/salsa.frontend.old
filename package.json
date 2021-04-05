@@ -9,8 +9,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "Echo Salsa.Frontend COMMITING",
-      "pre-push": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify"
+      "pre-commit": "echo \"[Salsa.FrontEnd] pre-commit\"",
+      "pre-push": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-git-tag-version --no-verify"
     }
   },
   "dependencies": {
