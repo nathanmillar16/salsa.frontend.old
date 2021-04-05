@@ -7,6 +7,12 @@
     "build": "next build",
     "start": "next start"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "Echo Salsa.Frontend COMMITING",
+      "pre-push": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify"
+    }
+  },
   "dependencies": {
     "next": "10.1.3",
     "react": "17.0.2",
