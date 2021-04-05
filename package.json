@@ -5,12 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "prepush": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify"
   },
   "husky": {
-    "hooks": {
-      "prepush": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify"
-    }
+    "hooks": {}
   },
   "dependencies": {
     "husky": "^6.0.0",
