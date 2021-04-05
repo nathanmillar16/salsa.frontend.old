@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "pre-commit": "echo \"[Salsa.FrontEnd] pre-commit\"",
-    "pre-push": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify --verbose"
+    "precommit": "echo \"[Salsa.FrontEnd] pre-commit\"",
+    "prepush": "npm version patch && git add package.json && git add package-lock.json && git commit -m \"Bump version\" --no-verify --verbose"
   },
   "dependencies": {
     "next": "10.1.3",
