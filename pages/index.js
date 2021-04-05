@@ -1,65 +1,67 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Link from "next/link";
+import styles from "../styles/Home.module.css";
+import events from "../events.json";
+import { fromImageToUrl } from "../utils/urls";
+import { priceFormatter } from "../utils/format";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Salsology</title>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff0000" />
+        <meta name="apple-mobile-web-app-title" content="Salsology" />
+        <meta name="application-name" content="Salsology" />
+        <meta name="msapplication-TileColor" content="#ff0000" />
+        <meta name="theme-color" content="#ff0000" />
+        {/* SEO */}
+        {/* Todo - Pull these from Strapi */}
+        <meta
+          name="keywords"
+          content="Salsa, dancing, Bachata, Salsa classes, Bolton, Salsafix, Salsa Fix, Salsology, Prestwich, Manchester, Horwich,"
+        />
+        <meta
+          name="description"
+          content="Upcoming Salsa events and Salsa dance classes in the North West and also details of events nationwide which feature DJ Gillian 'Salsa Fix'"
+        />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <h1>Events</h1>
+      {events.map((event) => (
+        <div key={event.EventName} className={styles.events}>
+          <Link href={`/events/${event.EventSlug}`}>
+            <a>
+              <div className={styles.event__Row}>
+                <div className={styles.event__ColImg}>
+                  <img src={fromImageToUrl(event.EventImage)} />
+                </div>
+                <div className={styles.event__Col}>
+                  {event.EventName} || {priceFormatter(event.EventPrice)}
+                </div>
+              </div>
+            </a>
+          </Link>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      ))}
     </div>
-  )
+  );
 }
