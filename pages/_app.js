@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import Header from "../compontents/Header";
-import Footer from "../compontents/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { AuthProvider } from "../context/AuthContext";
 
 function MyApp({ Component, pageProps }) {
