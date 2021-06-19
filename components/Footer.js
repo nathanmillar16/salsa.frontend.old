@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default () => (
+const Footer = () => (
   <footer>
     Salsology © {new Date().getFullYear()} All rights Reserved ||{" "}
     <Link href="//nathanmillar.co.uk">
@@ -8,3 +8,5 @@ export default () => (
     </Link>
   </footer>
 );
+
+export default Footer;

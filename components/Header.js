@@ -1,10 +1,10 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import Link from "next/link";
-import AuthContext from "../context/AuthContext";
+// import AuthContext from "../context/AuthContext";
 import styles from "../styles/Header.module.css";
 import { useRouter } from "next/router";
 
-export default () => {
+const Header = () => {
   const router = useRouter();
   const isHome = router.pathname === "/";
 
@@ -13,7 +13,7 @@ export default () => {
     router.back();
   };
 
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
 
   return (
     <>
@@ -34,7 +34,7 @@ export default () => {
         </div>
       </div>
 
-      <div classname={styles.auth}>
+      {/* <div classname={styles.auth}>
         {user ? (
           <Link href="/account">
             <a>{user.email}</a>
@@ -44,7 +44,9 @@ export default () => {
             <a>Login</a>
           </Link>
         )}
-      </div>
+      </div> */}
     </>
   );
 };
+
+export default Header;
