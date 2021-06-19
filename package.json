@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:strapi": "npm-run-all -p dev strapi",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "strapi": "cd ../SALSA.BACKEND && npm run develop"
   },
   "husky": {
     "hooks": {
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "husky": "^4.2.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1"
   }
 }
